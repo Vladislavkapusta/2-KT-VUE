@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import PrivateView from '../views/PrivateView.vue'
 import PublicView from '../views/PublicView.vue'
 
 function checkAuth(){
-  let password = localStorage.getItem('password')
-  if (password === 'admin'){
+  if (localStorage.getItem('token')){
     return true
   } else{
     return false
@@ -17,13 +17,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'public',
-      component: PublicView
+      name: 'home',
+      component: HomeView
     },
     {
       path: '/private',
       name: 'private',
       component: PrivateView
+    },
+    {
+      path: '/public',
+      name: 'public',
+      component: PublicView
     },
     {
       path: '/login',
